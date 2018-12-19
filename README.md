@@ -12,12 +12,13 @@ The application comes in two parts:
 ### Backend
 - The backend expects a MongoDB server running on localhost:27017 - this can be changed in `backend/db/mongoose.js` - and will read and write to a db named "invoice_challenge"
 - With a MongoDB server running, from the `backend/` directory run `yarn install && yarn start` or `npm install && npm start` to launch the server.
-- There is a `db/seeds.js` file which will create a few example invoices. It is currently **commented out** in index.js for safety as it **will wipe** a collection called Invoice in a database called invoice_challenge.
+- There is a `db/seeds.js` file which will create a few example invoices. It is currently **commented out** in index.js for safety as it **will wipe** a collection called Invoice in a database called invoice_challenge, should it exist.
 - `yarn test` or `npm test` to run tests
+- N.B. the server port is set to 3003 to avoid the frontend competing for it during local testing.
 
 ### Frontend
 - The frontend requires the backend to be running in order to access and write any data
-- From the `frontend/` directory run `yarn install && yarn start` or `npm install && npm start` to launch the frontend app in development mode, or `serve -s build` to serve the public build locally
+- From the `frontend/` directory run `yarn install && yarn start` or `npm install && npm start` to launch the frontend app in development mode, or `yarn run build && serve -s build` to serve the public build locally
 - `yarn test` or `npm test` to run tests
 
 ## Technologies and dependencies

@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3003/invoices"
+const baseUrl = "http://192.168.0.18:3003/invoices"
 const headers = { 'Content-Type': 'application/json' }
 
 export const getInvoices = () => {

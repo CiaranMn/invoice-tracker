@@ -35,10 +35,10 @@ class InvoiceRow extends React.Component {
         <td>{invoice.company}</td>
         <td>{invoice.service}</td>
         <td>{invoice.value}</td>
-        <td>{new Date(invoice.due).toLocaleDateString()}</td>
+        <td>{new Date(invoice.due).toLocaleDateString('en-GB')}</td>
         <td>
         {invoice.paidStatus ?
-              new Date(invoice.paidDate).toLocaleDateString()
+            new Date(invoice.paidDate).toLocaleDateString('en-GB')
               : 
               <button onClick={this.toggleCalendar} className='red-button'>
                 Unpaid

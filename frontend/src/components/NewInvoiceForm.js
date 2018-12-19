@@ -76,7 +76,7 @@ class NewInvoiceForm extends React.Component {
             name="company"
             value={company} 
             onChange={this.handleInputChange}
-            className={errors.includes('company') ? 'input-error' : null}
+            className={errors.indexOf('company') >= 0 ? 'input-error' : null}
           />
         </td>
         <td>
@@ -85,7 +85,7 @@ class NewInvoiceForm extends React.Component {
             name="service"
             value={service}
             onChange={this.handleInputChange}
-            className={errors.includes('service') ? 'input-error' : null}
+            className={errors.indexOf('service') >= 0 ? 'input-error' : null}
           />
         </td>
         <td>
@@ -100,7 +100,7 @@ class NewInvoiceForm extends React.Component {
         </td>
         <td>
           <button onClick={this.toggleCalendar}>
-            {new Date(due).toLocaleDateString()}
+            {new Date(due).toLocaleDateString('en-GB')}
           </button>
           {calendarOpen &&
             <DatePicker
