@@ -1,0 +1,99 @@
+:root {
+  --header-color: #31333E;
+  --blue-color: #1882A5;
+  --dark-blue-color:#0B5973;
+  --red-color: #ff4000;
+  --dark-red-color: #b32d00;
+  --green-color: #248148;
+  --dark-green-color: #16502c;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: 15px 6%;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  background-color: black;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.invoice-table {
+  width: 90%;
+  margin: auto;
+  border: 2px solid black;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.invoice-table th {
+  width: 20%;
+  padding: 10px;
+  background-color: var(--header-color);
+  color: white;
+}
+
+.invoice-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+input {
+  width: 90%;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 0.8rem;
+  border: 1px solid grey;
+}
+
+button {
+  padding: 8px;
+  min-width: 80px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border: 0px;
+  border-radius: 6px;
+  background-color: var(--blue-color);
+  color: white;
+  -webkit-transition-duration: 0.3s; 
+  transition-duration: 0.3s;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  background-color: var(--dark-blue-color);
+  cursor: pointer;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+.red-button {
+  background-color: var(--red-color);
+}
+
+.red-button:hover {
+  background-color: var(--dark-red-color);
+}
+
+.create-button {
+  background-color: var(--green-color);
+}
+
+.create-button:hover {
+  background-color: var(--dark-green-color);
+}
