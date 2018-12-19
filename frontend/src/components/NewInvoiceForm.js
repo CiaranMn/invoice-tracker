@@ -95,7 +95,7 @@ class NewInvoiceForm extends React.Component {
             value={value}
             min={0}
             onChange={this.handleInputChange}
-            className={errors.includes('value') ? 'input-error' : null}
+            className={errors.indexOf('service') >= 0 ? 'input-error' : null}
           />
         </td>
         <td>
