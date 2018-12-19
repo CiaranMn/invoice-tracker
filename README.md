@@ -4,14 +4,15 @@
 
 ##
 The application comes in two parts:
-- A **frontend** application which acts as the interface for business customers, comprising a table for displaying, sorting and updating invoices, and a form for entering new invoices.
+- A **frontend** application which acts as the interface for business customers, comprising a table for displaying and updating invoices, and a form for entering new invoices.
 - A **backend** which saves, retrieves and updates data on invoices from a database in response to requests from the frontend application.
 
 
 ## Installation
 ### Backend
-- The server expects a MongoDB server running on localhost:27017 - this can be changed in `backend/db/mongoose.js` - and will read and write to a db named "invoice_challenge"
-- With a MongoDB server running, from the `backend/` directory run `yarn install && yarn start` or `npm install && npm start` to launch the server
+- The backend expects a MongoDB server running on localhost:27017 - this can be changed in `backend/db/mongoose.js` - and will read and write to a db named "invoice_challenge"
+- With a MongoDB server running, from the `backend/` directory run `yarn install && yarn start` or `npm install && npm start` to launch the server.
+- There is a `db/seeds.js` file which will create a few example invoices. It is currently **commented out** in index.js for safety as it **will wipe** a collection called Invoice in a database called invoice_challenge.
 - `yarn test` or `npm test` to run tests
 
 ### Frontend

@@ -13,9 +13,27 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.attemptInvoiceFetch()
+  }
+
+  attemptInvoiceFetch = () => {
+    this.setState({
+      loading: true,
+      loadingMsg: 'Waiting to get invoice data from server...'
+    })
     API.getInvoices()
-      .then(invoices => this.sortAndSetInvoices(invoices))
-      .catch(err => alert(err))
+      .then(invoices => {
+        this.setState({ loading: false })
+        this.sortAndSetInvoices(invoices)
+      })
+      .catch(err => {
+        this.setState({
+          loadingMsg: 'Could not contact server. Trying again in a few seconds...'
+        })
+        setTimeout(() => {
+          this.attemptInvoiceFetch()
+        }, 5000);
+    })
   }
 
   toggleNewForm = () => {
@@ -50,7 +68,7 @@ class App extends React.Component {
 
   render() {
 
-    const {showNewForm, invoices} = this.state
+    const {showNewForm, invoices, loading, loadingMsg} = this.state
     
     return (
       <div className="app">
@@ -61,8 +79,8 @@ class App extends React.Component {
             Invoice Tracker
           </div>
 
-          <button onClick={this.toggleNewForm}>
-            {showNewForm ? "Cancel New" : "New Invoice"}
+          <button onClick={this.toggleNewForm} disabled={loading}>
+            {showNewForm ? "Close New Form" : "New Invoice"}
           </button>
           
         </header>
@@ -80,10 +98,17 @@ class App extends React.Component {
           </thead>
 
           <tbody>
-            {showNewForm && 
-              <NewInvoiceForm createInvoice={this.createInvoice}/>
+            {loading &&
+              <tr>
+                <td className="loading" colSpan={5}>
+                {loadingMsg}
+                </td>
+              </tr>
             }
-            {invoices.map(invoice => 
+            {!loading && showNewForm &&
+              <NewInvoiceForm createInvoice={this.createInvoice} />
+            }
+            {!loading && invoices.map(invoice => 
               <InvoiceRow 
                 invoice={invoice}
                 key={invoice._id}

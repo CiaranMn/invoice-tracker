@@ -11,7 +11,7 @@ class NewInvoiceForm extends React.Component {
     service: '',
     value: 0,
     due: new Date(),
-    dateSelected: false,  // whether user has selected a due date
+    errors: [],
     calendarOpen: false   // whether datepicker is open
   }
 
@@ -22,16 +22,28 @@ class NewInvoiceForm extends React.Component {
   }
 
   handleDateChange = due => {
-    this.setState({ 
-      due,
-      dateSelected: true
-    })
+    this.setState({ due })
     this.toggleCalendar()
   }
 
   toggleCalendar = event => {
     event && event.preventDefault()
     this.setState({ calendarOpen: !this.state.calendarOpen })
+  }
+
+  formSubmit = () => {
+    const {company, service, value} = this.state
+    let formErrors = []
+    if (company === '') { formErrors.push('company') }
+    if (service === '') { formErrors.push('service') }
+    if (isNaN(parseInt(value))) { formErrors.push('value') }
+    if (formErrors.length !== 0) {
+      return this.setState({
+        errors: formErrors
+      })
+    } else {
+      this.createInvoice()
+    }
   }
 
   createInvoice = () => {
@@ -47,22 +59,24 @@ class NewInvoiceForm extends React.Component {
       service: '',
       value: 0,
       due: new Date(),
-      dateSelected: false
+      dateSelected: false,
+      errors: []
     })
   }
 
   render() {
 
-    const {company, service, value, due, dateSelected, calendarOpen} = this.state
+    const { company, service, value, due, errors, calendarOpen } = this.state
 
     return (
-      <tr>
+       <tr>
         <td>
           <input 
             type="text"
             name="company"
             value={company} 
             onChange={this.handleInputChange}
+            className={errors.includes('company') ? 'input-error' : null}
           />
         </td>
         <td>
@@ -71,6 +85,7 @@ class NewInvoiceForm extends React.Component {
             name="service"
             value={service}
             onChange={this.handleInputChange}
+            className={errors.includes('service') ? 'input-error' : null}
           />
         </td>
         <td>
@@ -78,12 +93,14 @@ class NewInvoiceForm extends React.Component {
             type="number"
             name="value"
             value={value}
+            min={0}
             onChange={this.handleInputChange}
+            className={errors.includes('value') ? 'input-error' : null}
           />
         </td>
         <td>
           <button onClick={this.toggleCalendar}>
-            {dateSelected ? new Date(due).toLocaleDateString() : 'Due Date'}
+            {new Date(due).toLocaleDateString()}
           </button>
           {calendarOpen &&
             <DatePicker
@@ -98,7 +115,7 @@ class NewInvoiceForm extends React.Component {
           }
         </td>
         <td>
-          <button onClick={this.createInvoice} className='create-button'>
+          <button onClick={this.formSubmit} className='create-button'>
             Create
           </button>
         </td>

@@ -2,7 +2,7 @@
   --header-color: #31333E;
   --blue-color: #1882A5;
   --dark-blue-color:#0B5973;
-  --red-color: #ff4000;
+  --red-color: #ff3333;
   --dark-red-color: #b32d00;
   --green-color: #248148;
   --dark-green-color: #16502c;
@@ -13,9 +13,8 @@
   align-items: center;
   padding: 15px 6%;
   justify-content: space-between;
-  box-sizing: border-box;
   margin-bottom: 10px;
-  background-color: black;
+  background-color: var(--header-color);
   color: white;
   font-size: 1.3rem;
   font-weight: bold;
@@ -27,6 +26,8 @@
   border: 2px solid black;
   border-collapse: collapse;
   font-size: 0.9rem;
+  height: 100%;
+  margin-bottom: 20px;
 }
 
 .invoice-table th {
@@ -43,12 +44,21 @@
   border-radius: 5px;
 }
 
+.loading {
+  height: 150px;
+}
+
 input {
   width: 90%;
   border-radius: 4px;
   padding: 4px;
   font-size: 0.8rem;
   border: 1px solid grey;
+}
+
+.input-error {
+  border: 2px solid var(--red-color);
+  padding: 3px;
 }
 
 button {
@@ -64,22 +74,18 @@ button {
   transition-duration: 0.3s;
 }
 
-button:focus {
-  outline: none;
-}
-
 button:hover {
   background-color: var(--dark-blue-color);
   cursor: pointer;
 }
 
-a {
-  color: white;
+button:focus {
+  outline: none;
 }
 
-a:hover {
-  text-decoration: underline;
-  color: white;
+button:disabled {
+  background: grey;
+  cursor: default;
 }
 
 .red-button {

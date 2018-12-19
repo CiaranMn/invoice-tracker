@@ -1,15 +1,11 @@
-import 'whatwg-fetch'
-import 'promise-polyfill/src/polyfill'
-
-const baseUrl = "http://localhost:3000/invoices"
+const baseUrl = "http://localhost:3003/invoices"
 const headers = { 'Content-Type': 'application/json' }
 
 export const getInvoices = () => {
   return fetch(baseUrl)
     .then(resp => resp.json())
     .then(resp => resp.invoices)
-    .catch(err => Promise.reject(`Unable to fetch invoices from server -
-    is the server running on ${baseUrl}?`))
+    .catch(err => Promise.reject("Unable to fetch invoices from server"))
 }
 
 export const createInvoice = invoice => {
